@@ -1,0 +1,25 @@
+
+
+  <mat-form-field floatLabel="auto" hideRequiredMarker appearance="outline">
+    <mat-label>Choisissez un type</mat-label>
+    <mat-select [(ngModel)]="typeChoisi">
+      <mat-option *ngFor="let type of listeTypesCompetences" [value]="type">
+        {{ type }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <form [formGroup]="form" class="normal-form">
+  <mat-form-field class="example-form-field" floatLabel="auto" hideRequiredMarker appearance="outline">
+    <mat-label>Rentrez une compétence</mat-label>
+    <input matInput formControlName="libelleChoisi">
+  </mat-form-field>
+
+  <div class="button-row">
+    <button mat-raised-button color="primary" type="submit" [disabled]="form.invalid" (click)="onEnvoi()">
+      Ajouter competence
+    </button>
+  </div>
+
+</form>
+

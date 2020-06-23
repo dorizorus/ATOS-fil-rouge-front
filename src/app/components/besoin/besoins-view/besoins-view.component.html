@@ -1,0 +1,139 @@
+<div class="outer-table">
+  <mat-form-field>
+    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+  </mat-form-field>
+
+  <table class="mat-elevation-z8" mat-table #outerSort="matSort" [dataSource]="dataSource" multiTemplateDataRows
+         matSort>
+
+
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>id</th>
+      <td mat-cell *matCellDef="let besoin">{{ besoin.id }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="titre">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>titre</th>
+      <td mat-cell *matCellDef="let besoin">{{ besoin.titre }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="dateEmission">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Date</th>
+      <td mat-cell *matCellDef="let besoin">{{ besoin.dateEmission }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="client">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>client</th>
+      <td mat-cell *matCellDef="let besoin">{{ besoin.client?.nom }}  {{ besoin.siteClient?.nomVille}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="dateEcheance">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>date d'échéance</th>
+      <td mat-cell *matCellDef="let besoin">{{ besoin.dateEcheance }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="competences">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Compétences</th>
+      <td mat-cell *matCellDef="let competence">{{ competence.libelle }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="agence">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Agence</th>
+      <td mat-cell *matCellDef="let besoin">{{ besoin.agence?.nom }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="estSatisfait">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Satisfait ?</th>
+      <td mat-cell *matCellDef="let besoin">
+        <mat-checkbox [ngModel]="besoin.estSatisfait" [disabled]="true"></mat-checkbox>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef>Actions</th>
+      <td mat-cell *matCellDef="let besoin">
+
+        <button mat-mini-fab color="primary"
+                (click)="addComment(besoin)">
+          <mat-icon>add_comment</mat-icon>
+        </button>
+
+        <button mat-mini-fab color="accent"
+                (click)="editBesoin(besoin)">
+          <mat-icon>edit</mat-icon>
+        </button>
+
+      </td>
+
+    </ng-container>
+
+<!--     Expanded Content Column - The detail row is made up of this one column that spans across all columns-->
+
+    <ng-container matColumnDef="expandedDetail">
+
+      <td mat-cell *matCellDef="let besoin" [attr.colspan]="outerDisplayedColumns.length">
+
+        <div class="element-detail"
+             *ngIf="besoin.propositions?.data?.length"
+             [@detailExpand]="besoin == expandedElement ? 'expanded' : 'collapsed'">
+
+          <div class="inner-table mat-elevation-z8" *ngIf="expandedElement">
+
+            <table class="inner-table" mat-table [dataSource]="besoin.propositions">
+              <ng-container matColumnDef="id">
+                <th mat-header-cell *matHeaderCellDef>id</th>
+                <td mat-cell *matCellDef="let proposition">{{ proposition.id }}</td>
+              </ng-container>
+              <ng-container matColumnDef="dateProposition">
+                <th mat-header-cell *matHeaderCellDef>Date</th>
+                <td mat-cell *matCellDef="let proposition">{{ proposition.dateProposition }}</td>
+              </ng-container>
+
+              <ng-container matColumnDef="dateRelance">
+                <th mat-header-cell *matHeaderCellDef>Date de Relance</th>
+                <td mat-cell *matCellDef="let proposition">{{ proposition.dateRelance }}</td>
+              </ng-container>
+
+              <ng-container matColumnDef="collaborateur">
+                <th mat-header-cell *matHeaderCellDef>Collaborateur</th>
+                <td mat-cell
+                    *matCellDef="let proposition">{{ proposition.collaborateur?.nom }} {{ proposition.collaborateur?.prenom }}</td>
+              </ng-container>
+
+              <ng-container matColumnDef="prixAchat">
+                <th mat-header-cell *matHeaderCellDef>Prix d'Achat</th>
+                <td mat-cell *matCellDef="let proposition">{{ proposition.prixAchat }} €</td>
+              </ng-container>
+
+              <ng-container matColumnDef="prixVente">
+                <th mat-header-cell *matHeaderCellDef>prix de Vente</th>
+                <td mat-cell *matCellDef="let proposition">{{ proposition.prixVente }} €</td>
+              </ng-container>
+
+              <ng-container matColumnDef="statut">
+                <th mat-header-cell *matHeaderCellDef>Statut</th>
+                <td mat-cell *matCellDef="let proposition">{{ proposition.statut.libelle }}</td>
+              </ng-container>
+
+
+              <tr mat-header-row *matHeaderRowDef="innerDisplayedColumns"></tr>
+              <tr mat-row *matRowDef="let row; columns: innerDisplayedColumns;"></tr>
+            </table>
+
+          </div>
+
+        </div>
+
+      </td>
+
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="outerDisplayedColumns; sticky:true"></tr>
+    <tr mat-row *matRowDef="let besoin; columns: outerDisplayedColumns;"
+        [class.proposition-row]="besoin.propositions.data?.length"
+        [class.besoin-expanded-row]="expandedElement === besoin" (click)="toggleRow(besoin)"></tr>
+    <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="besoin-detail-row"></tr>
+
+  </table>
+</div>
+

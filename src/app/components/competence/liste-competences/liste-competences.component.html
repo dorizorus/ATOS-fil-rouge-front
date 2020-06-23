@@ -1,0 +1,92 @@
+<!--<div *ngFor="let competence of listeCompet">
+    <p>{{ competence.libelle }}</p>
+    <button mat-raised-button color="primary" (click)="afficherType(competence)">Afficher type</button>
+</div>-->
+
+<h4> Intitulé </h4>
+
+<!--Déjà faire fonctionner la liste de competence dans un tableau en mettant
+en dur la taille du tableau et tout ça -->
+<!-- Faire un tableau vide. Analyser les type de json et ajouter le nom
+du libellé s'il n'est pas déjà dans le tableau. Ca creeras un tableau qui
+servira au ngfor pour sortir les bons intitulés et la bonne longueur-->
+<div class="positionPanel">
+  <mat-accordion>
+    <mat-expansion-panel *ngFor=" let type of listeTypesCompet"
+      class="panneau"
+      hideToggle="true"
+      displayMode="flat">
+      <mat-expansion-panel-header>
+        <mat-panel-title> <!-- type = "Metier"-->
+          {{type}}
+        </mat-panel-title>
+        <button mat-mini-fab color="primary"
+                (click)="addCompetence(type)">
+          <mat-icon>library_add</mat-icon>
+        </button>
+      </mat-expansion-panel-header>
+      <mat-chip-list aria-label="ListeMetier">
+        <div *ngFor="let competence of listeCompet">
+          <div *ngIf="competence.type == type">
+            <mat-chip color="primary" selected>{{competence.libelle}}</mat-chip>
+          </div>
+        </div>
+      </mat-chip-list>
+    </mat-expansion-panel>
+
+    <!--        <mat-expansion-panel-->
+    <!--            class="panneau"-->
+    <!--            hideToggle="true"-->
+    <!--            displayMode="flat">-->
+    <!--            <mat-expansion-panel-header>-->
+    <!--                <mat-panel-title>-->
+    <!--                    Outil-->
+    <!--                </mat-panel-title>-->
+    <!--        </mat-expansion-panel-header>-->
+    <!--            <mat-chip-list aria-label="ListeOutil">-->
+    <!--                <div *ngFor="let competence of listeCompet">-->
+    <!--                    <div *ngIf= "competence.type == 'Outil'">-->
+    <!--                        <mat-chip color="primary" selected>{{competence.libelle}}</mat-chip>-->
+    <!--                    </div>-->
+    <!--                </div>-->
+    <!--            </mat-chip-list>-->
+    <!--        </mat-expansion-panel>-->
+
+    <!--        <mat-expansion-panel-->
+    <!--            class="panneau"-->
+    <!--            hideToggle="true"-->
+    <!--            displayMode="flat">-->
+    <!--            <mat-expansion-panel-header>-->
+    <!--                <mat-panel-title> &lt;!&ndash; type = "Metier"&ndash;&gt;-->
+    <!--                    Technologie-->
+    <!--                </mat-panel-title>-->
+    <!--        </mat-expansion-panel-header>-->
+    <!--            <mat-chip-list aria-label="ListeMetier">-->
+    <!--                <div *ngFor="let competence of listeCompet">-->
+    <!--                    <div *ngIf= "competence.type == 'Technologie'">-->
+    <!--                        <mat-chip color="primary" selected>{{competence.libelle}}</mat-chip>-->
+    <!--                    </div>-->
+    <!--                </div>-->
+    <!--            </mat-chip-list>-->
+    <!--        </mat-expansion-panel>-->
+
+    <!--        <mat-expansion-panel-->
+    <!--            class="panneau"-->
+    <!--            hideToggle="true"-->
+    <!--            displayMode="flat">-->
+    <!--            <mat-expansion-panel-header>-->
+    <!--                <mat-panel-title>-->
+    <!--                    <p>Méthode</p>-->
+    <!--                </mat-panel-title>-->
+    <!--        </mat-expansion-panel-header>-->
+    <!--            <mat-chip-list aria-label="ListeMéthode">-->
+    <!--                <div *ngFor="let competence of listeCompet">-->
+    <!--                    <div *ngIf= "competence.type == 'Méthode'">-->
+    <!--                        <mat-chip color="primary" selected>{{competence.libelle}}</mat-chip>-->
+    <!--                    </div>-->
+    <!--                </div>-->
+    <!--            </mat-chip-list>-->
+    <!--        </mat-expansion-panel>-->
+  </mat-accordion>
+</div>
+

@@ -1,0 +1,22 @@
+.mat-table {
+  width: 100%;
+}
+.element-detail {
+  overflow: hidden;
+  //display: flex;
+  //flex-direction: column;
+  background-color: grey;
+}
+
+.inner-table {
+  width: 100%;
+  background-color: grey;
+}
+
+tr.proposition-row:not(.besoin-expanded-row):hover {
+  background: #777;
+}
+
+tr.proposition-row:not(.besoin-expanded-row):active {
+  background: #efefef;
+}

@@ -1,0 +1,38 @@
+<form [formGroup]="besoinForm">
+
+  <mat-form-field floatLabel="auto" hideRequiredMarker appearance="outline">
+    <mat-label> Libellé du besoin </mat-label>
+    <input matInput  formControlName="titre"/>
+  </mat-form-field>
+  <br/>
+
+  <mat-form-field floatLabel="auto" hideRequiredMarker appearance="outline">
+    <mat-label> Date d'émission </mat-label>
+    <input matInput  formControlName="dateEmission"/>
+  </mat-form-field>
+  <br/>
+
+  <mat-form-field floatLabel="auto" hideRequiredMarker appearance="outline">
+    <mat-label> Date d'échéance </mat-label>
+    <input matInput formControlName="dateEcheance"/>
+  </mat-form-field>
+  <br/>
+
+  <mat-checkbox [labelPosition]="labelPosition" class="tp-margin" formControlName="estOuvert"> Est Ouvert ?
+  </mat-checkbox>
+  <br/>
+
+  <mat-checkbox [labelPosition]="labelPosition"  class="tp-margin" formControlName="estSatisfait"> Est Satisfait ?
+  </mat-checkbox>
+  <br/>
+
+  <mat-checkbox [labelPosition]="labelPosition" class="tp-margin" formControlName="estRecurrent"> Est Récurrent ?
+  </mat-checkbox>
+  <br/>
+
+  <div class="button-row">
+    <button mat-raised-button color="primary" type="submit" [disabled]="besoinForm.invalid" (click)="onSubmit()"> Enregistrer les modifications ! </button>
+  </div>
+</form>
+
+

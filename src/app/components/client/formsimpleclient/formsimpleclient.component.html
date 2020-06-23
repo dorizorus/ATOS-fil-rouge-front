@@ -1,0 +1,81 @@
+<form [formGroup]="form" >
+
+  <mat-form-field floatLabel="auto" hideRequiredMarker appearance="outline">
+    <mat-label> Nom </mat-label>
+    <input matInput  formControlName="nom" id="nom" />
+    <mat-error Le champ nom est obligatoire></mat-error>
+  </mat-form-field>
+  <br>
+
+  <mat-form-field floatLabel="auto" hideRequiredMarker appearance="outline">
+    <mat-label> Ville </mat-label>
+    <input matInput  formControlName="ville" />
+    <mat-error Le champ ville est obligatoire></mat-error>
+  </mat-form-field>
+  <br>
+
+  <mat-form-field floatLabel="auto" hideRequiredMarker appearance="outline">
+    <mat-label> Adresse </mat-label>
+    <input matInput  formControlName="adresse" />
+    <mat-error Le champ Adresse est obligatoire ></mat-error>
+  </mat-form-field>
+  <br>
+
+  <mat-checkbox [labelPosition]="labelPosition" class = "tp-margin" formControlName="clientActif" >Client Actif ? </mat-checkbox>
+
+  <h2> Contact Client </h2>
+
+  <mat-form-field floatLabel="auto" hideRequiredMarker appearance="outline">
+    <mat-label> Nom du contact </mat-label>
+    <input matInput  formControlName="nomContact" />
+    <mat-error Le champ est obligatoire ></mat-error>
+  </mat-form-field>
+  <br>
+
+  <mat-form-field floatLabel="auto" hideRequiredMarker appearance="outline">
+    <mat-label> Prénom du contact </mat-label>
+    <input matInput  formControlName="prenomContact" />
+    <mat-error Le champ est obligatoire ></mat-error>
+  </mat-form-field>
+  <br>
+
+  <mat-form-field floatLabel="auto" hideRequiredMarker appearance="outline">
+    <mat-label> Poste </mat-label>
+    <input matInput  formControlName="poste" />
+    <mat-error Le champ est obligatoire ></mat-error>
+  </mat-form-field>
+  <br>
+
+  <mat-form-field floatLabel="auto" hideRequiredMarker appearance="outline">
+    <mat-label> Mail </mat-label>
+    <input matInput  formControlName="mail" />
+    <mat-error Le champ est obligatoire ></mat-error>
+  </mat-form-field>
+  <br>
+
+  <mat-form-field floatLabel="auto" hideRequiredMarker appearance="outline">
+    <mat-label> Portable </mat-label>
+    <input matInput  formControlName="portable" />
+    <mat-error Le champ est obligatoire ></mat-error>
+  </mat-form-field>
+  <br>
+
+  <mat-form-field floatLabel="auto" hideRequiredMarker appearance="outline">
+    <mat-label> Fixe </mat-label>
+    <input matInput  formControlName="fixe" />
+    <mat-error Le champ est obligatoire ></mat-error>
+  </mat-form-field>
+  <br>
+
+  <mat-form-field floatLabel="auto" hideRequiredMarker appearance="outline">
+    <mat-label> Fax </mat-label>
+    <input matInput  formControlName="fax" />
+    <mat-error Le champ est obligatoire ></mat-error>
+  </mat-form-field>
+  <br>
+
+  <div class="button-row">
+    <button mat-raised-button color="primary" type="submit" [disabled]="form.invalid" (click)="onAdd()"> Ajouter client </button>
+  </div>
+
+</form>
